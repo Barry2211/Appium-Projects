@@ -17,7 +17,6 @@ import io.appium.java_client.android.options.UiAutomator2Options;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
 
 public class DemoAPP {
-	
 	public static void main(String[] args) throws InterruptedException {
 		AppiumDriverLocalService service = AppiumUtils.getService();
 		service.start();
@@ -35,14 +34,16 @@ public class DemoAPP {
 		driver.findElement(By.xpath("//android.widget.TextView[@content-desc=\"1. Custom Adapter\"]")).click();
 		WebElement element = driver.findElement(By.xpath("//android.widget.TextView[@text=\"People Names\"]"));
 		JavascriptExecutor js = (JavascriptExecutor) driver;
-		js.executeScript("mobile:longClickGesture",ImmutableMap.of(
-				"elementId", ((RemoteWebElement)element).getId(),
-				"duration", 3000
-				));
+		js.executeScript(
+				"mobile:longClickGesture",
+				ImmutableMap.of(
+						"elementId", ((RemoteWebElement) element).getId(),
+						"duration", 3000
+						)
+				);
 		
 		TimeUnit.SECONDS.sleep(10);
 		driver.quit();
 		service.stop();
-		
 	}
 }
